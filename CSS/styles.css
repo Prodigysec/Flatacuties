@@ -2,6 +2,11 @@
     background-color: #f8f8f8;
     text-align: center;
     padding: 20px;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    right: 0;
   }
 
 .headline {
@@ -9,4 +14,45 @@
     font-weight: bold;
     color: #333;
     margin: 0;
+}
+
+#catsContainer {
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 100px;
+  }
+  
+.cat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background-color: #e5e5e5;
+    border-radius: 5px;
+
+  } 
+  
+.cat-image {
+    width: 250px;
+    height: 250px;
+    border-radius: 4px;
+    /* background-color: #fe8b8b; */
+}
+  
+.cat-name {
+    font-weight: bold;
+    margin-bottom: 2px;
+    margin-right: 85px;
+    text-align: center;
+}
+  
+.like-button {
+    background-color: #dba666;
+    color: #fff;
+    padding: 4px 7px;
+    border-radius: 9px;
+    cursor: pointer;
 }
