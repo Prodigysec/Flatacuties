@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
     fetch("http://localhost:3000/characters")
         .then(result => { return result.json(); })
         .then(data => {
+            const catNames = [];
+
             for (const key in data) {
                 const catName = data[key].name;
 
@@ -29,9 +31,31 @@ document.addEventListener("DOMContentLoaded", function () {
                 catContainer.appendChild(catImageElement);
                 catContainer.appendChild(catElement);
                 // catElement.appendChild(buttonElement);
+
+                catNames.push(catElement);
+
             }
-        })
-        .catch(error => {
+
+            const catContainer = document.querySelector(".cat");
+
+            attachEventListeners(catNames, catContainer);
+
+        }).catch(error => {
             console.error(error);
         });
+
+    function attachEventListeners(catNames, catContainer) {
+        catNames.forEach(catNameElement => {
+            catNameElement.addEventListener("click", event => {
+                const clickedName = event.target.textContent;
+                let index = catNames.indexOf(catNameElement);
+                console.log(index);
+
+                if (catContainer.children[3] === undefined) {
+                    alert("Progress")
+                }
+            });
+
+        });
+    }
 })
