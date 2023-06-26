@@ -5,9 +5,13 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(result => { return result.json(); })
         .then(data => {
             const catNames = [];
+            const catContainers = [];
+            const catImageContainers = [];
+            const catImages = [];
 
             for (const key in data) {
                 const catName = data[key].name;
+                const catImage = data[key].image;
 
 
                 const catContainer = document.createElement("div");
@@ -22,37 +26,50 @@ document.addEventListener("DOMContentLoaded", function () {
                 catElement.classList.add("cat-name");
                 catElement.textContent = `${catName}`;
 
-
-                // const buttonElement = document.createElement("button");
-                // buttonElement.classList.add("like-button");
-                // buttonElement.textContent = "Vote";
-
                 catsContainer.appendChild(catContainer);
                 catContainer.appendChild(catImageElement);
                 catContainer.appendChild(catElement);
-                // catElement.appendChild(buttonElement);
 
                 catNames.push(catElement);
+                catContainers.push(catContainer);
+                catImageContainers.push(catImageElement);
+                catImages.push(catImage);
 
             }
 
-            const catContainer = document.querySelector(".cat");
+            console.log(catImages);
 
-            attachEventListeners(catNames, catContainer);
+            attachEventListeners(catNames, catContainers, catImageContainers, catImages);
+
 
         }).catch(error => {
             console.error(error);
         });
 
-    function attachEventListeners(catNames, catContainer) {
+    function attachEventListeners(catNames, catContainers, catImageContainers, catImages) {
         catNames.forEach(catNameElement => {
             catNameElement.addEventListener("click", event => {
                 const clickedName = event.target.textContent;
                 let index = catNames.indexOf(catNameElement);
                 console.log(index);
 
-                if (catContainer.children[3] === undefined) {
-                    alert("Progress")
+                const catContainer = catContainers[index];
+                if (catContainer.children.length < 3) {
+
+                    const buttonElement = document.createElement("button");
+                    buttonElement.classList.add("like-button");
+                    buttonElement.textContent = "Vote";
+
+                    catContainer.appendChild(buttonElement);
+                }
+
+                const catImageContainer = catImageContainers[index];
+                if (catImageContainer.children.length < 3) {
+
+                    const imageElement = document.createElement("img");
+                    imageElement.src = catImages[index];
+
+                    catImageContainer.appendChild(imageElement);
                 }
             });
 
