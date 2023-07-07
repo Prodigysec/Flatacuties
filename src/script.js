@@ -47,32 +47,36 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
     function attachEventListeners(catNames, catContainers, catImageContainers, catImages) {
-        catNames.forEach(catNameElement => {
+        catNames.forEach((catNameElement, index) => {
             catNameElement.addEventListener("click", event => {
                 const clickedName = event.target.textContent;
-                let index = catNames.indexOf(catNameElement);
                 console.log(index);
 
                 const catContainer = catContainers[index];
                 if (catContainer.children.length < 3) {
-
                     const buttonElement = document.createElement("button");
                     buttonElement.classList.add("like-button");
                     buttonElement.textContent = "Vote";
-
+                    // store the vote count
+                    buttonElement.dataset.votes = 0;
                     catContainer.appendChild(buttonElement);
                 }
 
                 const catImageContainer = catImageContainers[index];
                 if (catImageContainer.children.length < 3) {
-
                     const imageElement = document.createElement("img");
                     imageElement.src = catImages[index];
-
                     catImageContainer.appendChild(imageElement);
                 }
             });
-
         });
+
+        function handleVote(event) {
+            const button = event.target;
+            const voteCount = parseInt(button.dataset.votes) + 1;
+            button.dataset.votes = voteCount;
+            button.textContent = `Vote (${voteCount})`;
+        }
     }
+
 })
