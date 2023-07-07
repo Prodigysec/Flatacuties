@@ -1,5 +1,8 @@
 # Flatacuties
 
+## Author
+![Ian Raburu](https://github.com/Prodigysec)
+
 ## Description
 Week 2 Code Challenge at Moringa School. An app where you can vote for the cutest animal!.Click on an animal's name to view their image and a voting button. A vote button is also available for you to vote for your favourite animal.
 
