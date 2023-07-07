@@ -68,6 +68,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     imageElement.src = catImages[index];
                     catImageContainer.appendChild(imageElement);
                 }
+
+                // Attach event listener to the newly created button
+                const likeButton = catContainer.querySelector(".like-button");
+                likeButton.addEventListener("click", handleVote);
             });
         });
 
